@@ -1,119 +1,151 @@
 package se.iths.java24;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
-import se.iths.java24.entity.Continent;
-import se.iths.java24.entity.Country;
-
-import java.util.List;
+import se.iths.java24.repository.ContinentRepository;
 import java.util.Scanner;
-
-import static se.iths.java24.JPAUtil.getEntityManager;
-import static se.iths.java24.JPAUtil.inTransaction;
 
 public class Main {
 
     public static void main(String[] args) {
-//        boolean quite = false;
+        boolean quite = false;
         Scanner scanner = new Scanner(System.in); // Glöm inte att skapa en scanner-instans
-//
-//        printAction();
-//
-//        while (!quite) {
-//            System.out.print("Ange ditt val (1-5): ");
-//
-//            // Kontrollera om inmatningen är en siffra
-//            if (scanner.hasNextInt()) {
-//                int choice = scanner.nextInt();
-//                switch (choice) {
-//                    case 1:
-//                        countriesEurope();
-//                        break;
-//                    case 2:
-//                        population();
-//                        break;
-//                    case 3:
-//                        statistik();
-//                        break;
-//                    case 4:
-//                        Quiz();
-//                        break;
-//                    case 5:
-//                        quite = true;
-//                        System.out.println("Avslutar programmet. Tack!");
-//                        break;
-//                    default:
-//                        System.out.println("Ogiltigt val, försök igen. Välj ett nummer mellan 1 och 5.");
-//                        printAction();
-//                }
-//            } else {
-//                System.out.println("Ogiltig inmatning! Ange ett nummer mellan 1 och 5.");
-//                scanner.next(); // Rensar felaktig inmatning
-//            }
-//        }
-//
-//        scanner.close(); // Glöm inte att stänga scannern
-//    }
-//
-//    public static void countriesEurope() {
-//        System.out.println("Visar länder i Europa...");
-//        // Lägg till relevant logik här
-//    }
-//
-//    public static void population() {
-//        System.out.println("Visar befolkningsdata...");
-//        // Lägg till relevant logik här
-//    }
-//
-//    public static void statistik() {
-//        System.out.println("Visar statistik...");
-//        // Lägg till relevant logik här
-//    }
-//
-//    public static void Quiz() {
-//        System.out.println("Startar quiz...");
-//        // Lägg till relevant logik här
-//    }
-//    public static void printAction() {
-//        System.out.println("""
-//
-//                Welcome to Geo Learn Projekt!
-//                Välj:
-//                1.  -Continent.
-//                2.  - Population.
-//                3.  - Statistik.
-//                4.  - Quiz!
-//                5.  - Quit.
-//                """);
 
+        printAction();
 
-        Cities cities = new Cities();
-        Continent continent = new Continent();
+        while (!quite) {
+            System.out.print("Ange ditt val (1-6): ");
 
-        //Create new continent
-        continent.setContinentName("Utiopia");
-        continent.setContinentCode("up");
-        inTransaction(em -> {
-            em.persist(continent);
-        });
-
-        //Delete
-        inTransaction(entityManager -> {
-            Continent Utiopia = entityManager.find(Continent.class, "up");
-            if (Utiopia != null)
-                entityManager.remove(Utiopia);
-        });
-
-        //Update
-        inTransaction(entityManager -> {
-            Continent Africa = entityManager.find(Continent.class, "af");
-            if (Africa != null) {
-                Africa.setContinentName("Afrika");
+            // Kontrollera om inmatningen är en siffra
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Konsumera newline-karaktären
+                switch (choice) {
+                    case 1:
+                        continentMenu();
+                        break;
+                    case 2:
+                        population();
+                        break;
+                    case 3:
+                        statistik();
+                        break;
+                    case 4:
+                        Quiz();
+                        break;
+                    case 5:
+                        quite = true;
+                        System.out.println("Avslutar programmet. Tack!");
+                        break;
+                    default:
+                        System.out.println("Ogiltigt val, försök igen. Välj ett nummer mellan 1 och 6.");
+                        printAction();
+                }
+            } else {
+                System.out.println("Ogiltig inmatning! Ange ett nummer mellan 1 och 6.");
+                scanner.next(); // Rensar felaktig inmatning
             }
-        });
+        }
+
+        scanner.close(); // Glöm inte att stänga scannern
+    }
+
+    public static void continentMenu() {
+        Scanner scanner = new Scanner(System.in);
+        ContinentRepository repository = new ContinentRepository();
+
+        System.out.println("\nContinent Menu:");
+        System.out.println("1. Create a Continent");
+        System.out.println("2. Update a Continent");
+        System.out.println("3. Delete a Continent");
+        System.out.println("4. Back to Main Menu");
+        System.out.print("Choose an option: ");
+
+        if (scanner.hasNextInt()) {
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Konsumera newline-karaktären
+
+            switch (choice) {
+                case 1:
+                    ContinentRepository.CreateContinent();
+                    break;
+                case 2:
+                    ContinentRepository.UpdateContinent();
+                    break;
+                case 3:
+                    ContinentRepository.DeleteContinent();
+                    break;
+                case 4:
+                    System.out.println("Returning to Main Menu...");
+                    return;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+            }
+        } else {
+            System.out.println("Invalid input, please enter a number.");
+            scanner.next();
+        }
+    }
+
+    public static void countriesEurope() {
+        System.out.println("Visar länder i Europa...");
+        // Lägg till relevant logik här
+    }
+
+    public static void population() {
+        System.out.println("Visar befolkningsdata...");
+        // Lägg till relevant logik här
+    }
+
+    public static void statistik() {
+        System.out.println("Visar statistik...");
+        // Lägg till relevant logik här
+    }
+
+    public static void Quiz() {
+        System.out.println("Startar quiz...");
+        // Lägg till relevant logik här
+    }
+
+    public static void printAction() {
+        System.out.println("""
+                
+                Welcome to Geo Learn Projekt!
+                Välj:
+                1.  - Continent.
+                2.  - Population.
+                3.  - Statistik.
+                4.  - Quiz!
+                5.  - Quit.
+                """);
+    }
+}
+
+//
+//        Cities cities = new Cities();
+//        Continent continent = new Continent();
+//
+//        //Create new continent
+//        continent.setContinentName("Utiopia");
+//        continent.setContinentCode("up");
+//        inTransaction(em -> {
+//            em.persist(continent);
+//        });
+//
+//        //Delete
+//        inTransaction(entityManager -> {
+//            Continent Utiopia = entityManager.find(Continent.class, "up");
+//            if (Utiopia != null)
+//                entityManager.remove(Utiopia);
+//        });
+//
+//        //Update
+//        inTransaction(entityManager -> {
+//            Continent Africa = entityManager.find(Continent.class, "af");
+//            if (Africa != null) {
+//                Africa.setContinentName("Afrika");
+//            }
+//        });
 //
 //        String name = scanner.nextLine();
-//        EntityManager em = getEntityManager();
 //
 //        //Read
 //        String queryStr = "SELECT c FROM Continent c WHERE c.continentName =:name";
@@ -121,6 +153,30 @@ public class Main {
 //        query.setParameter("name", name);
 //        List<Continent> countries = query.getResultList();
 //        countries.forEach(System.out::println);
+
+
+//        //Read
+//        EntityManager em = getEntityManager();
+//        try {
+//            // Läs alla kontinenter
+//            String queryStr = "SELECT c FROM Continent c";
+//            TypedQuery<Continent> query = em.createQuery(queryStr, Continent.class);
+//            List<Continent> continents = query.getResultList();
+//
+//            // Skriv ut kontinenter
+//            if (continents.isEmpty()) {
+//                System.out.println("Inga kontinenter hittades.");
+//            } else {
+//                continents.forEach(System.out::println);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            // Stäng EntityManager
+//            em.close();
+//        }
+//    }
+
 
 //        //Ask user for information
 //        System.out.println("Add city to country");
@@ -135,8 +191,6 @@ public class Main {
 ////            return;
 ////        }
 ////
-
-
 
 
 //        //Create new country
@@ -232,8 +286,3 @@ public class Main {
 ////                    .executeUpdate();
 ////        });
 
-    }
-
-
-
-}

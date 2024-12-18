@@ -3,11 +3,17 @@ package se.iths.java24.repository;
 import jakarta.persistence.EntityManager;
 import se.iths.java24.JPAUtil;
 import se.iths.java24.entity.Continent;
-import se.iths.java24.entity.Country;
 
 import java.util.Optional;
+import java.util.Scanner;
+
+import static se.iths.java24.JPAUtil.inTransaction;
 
 public class ContinentRepository {
+
+    EntityManager em = JPAUtil.getEntityManager();
+    Continent continent = new Continent();
+
     public Optional<Continent> continentWithName(String countryName) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
@@ -19,4 +25,55 @@ public class ContinentRepository {
         }
     }
 
+    public static void CreateContinent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter continent name:");
+        String name = scanner.nextLine();
+        System.out.println("Enter continent code:");
+        String code = scanner.nextLine();
+
+        Continent continent = new Continent();
+        continent.setContinentName(name);
+        continent.setContinentCode(code);
+
+        inTransaction(em -> {
+            em.persist(continent);
+        });
+
+        System.out.println("Continent created successfully.");
+    }
+
+    public static void UpdateContinent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the continent code of the continent you want to update:");
+        String code = scanner.nextLine();
+        System.out.println("Enter the new name for the continent:");
+        String newName = scanner.nextLine();
+
+        inTransaction(entityManager -> {
+            Continent continent = entityManager.find(Continent.class, code);
+            if (continent != null) {
+                continent.setContinentName(newName);
+                System.out.println("Continent updated successfully.");
+            } else {
+                System.out.println("Continent not found.");
+            }
+        });
+    }
+
+    public static void DeleteContinent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the continent code of the continent you want to delete:");
+        String code = scanner.nextLine();
+
+        inTransaction(entityManager -> {
+            Continent continent = entityManager.find(Continent.class, code);
+            if (continent != null) {
+                entityManager.remove(continent);
+                System.out.println("Continent deleted successfully.");
+            } else {
+                System.out.println("Continent not found.");
+            }
+        });
+    }
 }

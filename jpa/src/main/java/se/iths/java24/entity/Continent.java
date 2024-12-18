@@ -12,6 +12,7 @@ public class Continent {
     @Column(name = "continent_code", nullable = false)
     private String continentCode;
 
+
     @Column(name = "continent_name")
     private String continentName;
 
@@ -30,5 +31,13 @@ public class Continent {
     public void setContinentName(String continentName) {
         this.continentName = continentName;
     }
+
+    @Override
+     public String toString() {
+         return "Continent{" +
+                 "id=" + continentCode +
+                 ", continentName='" + continentName + '\'' +
+                 '}';
+     }
 
 }

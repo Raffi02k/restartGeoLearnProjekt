@@ -20,4 +20,6 @@ public class CityRepository {
                 .setParameter("minpopulation", minpopulation)
                 .getResultList();
     }
+
+
 }
