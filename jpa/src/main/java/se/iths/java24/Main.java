@@ -72,7 +72,6 @@ public class Main {
         // Lägg till relevant logik här
     }
     public static void printAction() {
-        System.out.println();
         System.out.println("""
                 
                 Welcome to Geo Learn Projekt!
