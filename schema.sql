@@ -24,6 +24,7 @@ create table country
     constraint pk_country primary key (country_code)
 );
 
+
 insert into country (country_code, country_name)
 values ('dk', 'Denmark'),
        ('fi', 'Finland'),
