@@ -79,7 +79,7 @@ public class Main {
                 1.  - Countries in Europe.
                 2.  - Popuplation.
                 3.  - Statistik.
-                4.  - Quize!
+                4.  - Quiz!
                 5.  - Quit.
                 """);
 
