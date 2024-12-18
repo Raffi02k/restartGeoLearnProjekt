@@ -1,21 +1,24 @@
 package se.iths.java24.repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import se.iths.java24.JPAUtil;
 import se.iths.java24.entity.Continent;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import static se.iths.java24.JPAUtil.getEntityManager;
 import static se.iths.java24.JPAUtil.inTransaction;
 
 public class ContinentRepository {
 
-    EntityManager em = JPAUtil.getEntityManager();
+    EntityManager em = getEntityManager();
     Continent continent = new Continent();
 
     public Optional<Continent> continentWithName(String countryName) {
-        EntityManager em = JPAUtil.getEntityManager();
+        EntityManager em = getEntityManager();
         try {
             return Optional.of(em.createQuery("select c from Continent c where c.continentName = :continentName", Continent.class)
                     .setParameter("continentName", countryName)
@@ -60,6 +63,28 @@ public class ContinentRepository {
             }
         });
     }
+    public static void showContinents() {
+        EntityManager em = getEntityManager();
+        try {
+            // Läs alla kontinenter
+            String queryStr = "SELECT c FROM Continent c";
+            TypedQuery<Continent> query = em.createQuery(queryStr, Continent.class);
+            List<Continent> continents = query.getResultList();
+
+            // Skriv ut kontinenter
+            if (continents.isEmpty()) {
+                System.out.println("Inga kontinenter hittades.");
+            } else {
+                continents.forEach(System.out::println);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Stäng EntityManager
+            em.close();
+        }
+
+    }
 
     public static void DeleteContinent() {
         Scanner scanner = new Scanner(System.in);
@@ -77,3 +102,4 @@ public class ContinentRepository {
         });
     }
 }
+

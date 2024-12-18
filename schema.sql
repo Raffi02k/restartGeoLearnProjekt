@@ -16,6 +16,44 @@ values ('eu', 'Europe'),
        ('oc', 'Oceania'),
        ('sa', 'South America');
 
+create table language
+(
+    language_id   bigint auto_increment not null,
+    language_name varchar(255)          not null,
+    country_code  varchar(255)          not null,
+    constraint pk_language primary key (language_id),
+    constraint fk_language_country foreign key (country_code) references country (country_code)
+);
+
+insert into language (language_name, country_code)
+values
+    ('Danish', 'dk'),
+    ('Finnish', 'fi'),
+    ('Icelandic', 'is'),
+    ('Norwegian', 'no'),
+    ('Swedish', 'se'),
+    ('Sami', 'se'),
+    ('Greenlandic', 'dk');
+
+create table currency
+(
+    currency_code varchar(255) not null,
+    currency_name varchar(255) not null,
+    country_code varchar(255) not null,
+    constraint pk_currency primary key (currency_code),
+    constraint fk_currency_country foreign key (country_code) references country (country_code)
+);
+
+insert into currency (currency_code, currency_name, country_code)
+values
+    ('DKK', 'Danish Krone', 'dk'),
+    ('EUR', 'Euro', 'fi'),
+    ('ISK', 'Icelandic Krona', 'is'),
+    ('NOK', 'Norwegian Krone', 'no'),
+    ('SEK', 'Swedish Krona', 'se');
+
+
+
 
 create table country
 (

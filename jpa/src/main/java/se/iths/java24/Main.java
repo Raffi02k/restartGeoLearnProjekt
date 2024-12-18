@@ -3,6 +3,8 @@ package se.iths.java24;
 import se.iths.java24.repository.ContinentRepository;
 import java.util.Scanner;
 
+import static se.iths.java24.repository.ContinentRepository.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -12,7 +14,7 @@ public class Main {
         printAction();
 
         while (!quite) {
-            System.out.print("Ange ditt val (1-6): ");
+            System.out.print("Ange ditt val (1-5): ");
 
             // Kontrollera om inmatningen är en siffra
             if (scanner.hasNextInt()) {
@@ -53,10 +55,11 @@ public class Main {
         ContinentRepository repository = new ContinentRepository();
 
         System.out.println("\nContinent Menu:");
-        System.out.println("1. Create a Continent");
-        System.out.println("2. Update a Continent");
-        System.out.println("3. Delete a Continent");
-        System.out.println("4. Back to Main Menu");
+        System.out.println("1. Show Continents");
+        System.out.println("2. Create a Continent");
+        System.out.println("3. Update a Continent");
+        System.out.println("4. Delete a Continent");
+        System.out.println("5. Back to Main Menu");
         System.out.print("Choose an option: ");
 
         if (scanner.hasNextInt()) {
@@ -65,16 +68,21 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    ContinentRepository.CreateContinent();
+                    showContinents();
+                    continentMenu();
                     break;
                 case 2:
-                    ContinentRepository.UpdateContinent();
+                    CreateContinent();
                     break;
                 case 3:
-                    ContinentRepository.DeleteContinent();
+                    UpdateContinent();
                     break;
                 case 4:
+                    DeleteContinent();
+                    break;
+                case 5:
                     System.out.println("Returning to Main Menu...");
+                    printAction();
                     return;
                 default:
                     System.out.println("Invalid choice, please try again.");
@@ -118,65 +126,6 @@ public class Main {
                 """);
     }
 }
-
-//
-//        Cities cities = new Cities();
-//        Continent continent = new Continent();
-//
-//        //Create new continent
-//        continent.setContinentName("Utiopia");
-//        continent.setContinentCode("up");
-//        inTransaction(em -> {
-//            em.persist(continent);
-//        });
-//
-//        //Delete
-//        inTransaction(entityManager -> {
-//            Continent Utiopia = entityManager.find(Continent.class, "up");
-//            if (Utiopia != null)
-//                entityManager.remove(Utiopia);
-//        });
-//
-//        //Update
-//        inTransaction(entityManager -> {
-//            Continent Africa = entityManager.find(Continent.class, "af");
-//            if (Africa != null) {
-//                Africa.setContinentName("Afrika");
-//            }
-//        });
-//
-//        String name = scanner.nextLine();
-//
-//        //Read
-//        String queryStr = "SELECT c FROM Continent c WHERE c.continentName =:name";
-//        TypedQuery<Continent> query = em.createQuery(queryStr, Continent.class);
-//        query.setParameter("name", name);
-//        List<Continent> countries = query.getResultList();
-//        countries.forEach(System.out::println);
-
-
-//        //Read
-//        EntityManager em = getEntityManager();
-//        try {
-//            // Läs alla kontinenter
-//            String queryStr = "SELECT c FROM Continent c";
-//            TypedQuery<Continent> query = em.createQuery(queryStr, Continent.class);
-//            List<Continent> continents = query.getResultList();
-//
-//            // Skriv ut kontinenter
-//            if (continents.isEmpty()) {
-//                System.out.println("Inga kontinenter hittades.");
-//            } else {
-//                continents.forEach(System.out::println);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            // Stäng EntityManager
-//            em.close();
-//        }
-//    }
-
 
 //        //Ask user for information
 //        System.out.println("Add city to country");
