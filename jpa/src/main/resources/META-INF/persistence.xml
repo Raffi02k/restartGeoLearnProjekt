@@ -6,6 +6,9 @@
 
         <class>se.iths.java24.entity.Country</class>
         <class>se.iths.java24.entity.City</class>
+        <class>se.iths.java24.entity.Continent</class>
+
+
 
         <properties>
             <!-- Database connection settings -->
