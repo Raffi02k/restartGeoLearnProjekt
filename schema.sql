@@ -16,6 +16,15 @@ values ('eu', 'Europe'),
        ('oc', 'Oceania'),
        ('sa', 'South America');
 
+insert into continent (continent_code, continent_name)
+values ('eu', 'Europe'),
+       ('af', 'Africa'),
+       ('an', 'Antarctica'),
+       ('as', 'Asia'),
+       ('na', 'North America'),
+       ('oc', 'Oceania'),
+       ('sa', 'South America');
+
 create table country
 (
     country_code varchar(255) not null,
