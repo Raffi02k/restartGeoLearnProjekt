@@ -1,5 +1,21 @@
 use demo;
 
+create table continent
+(
+    continent_code varchar(255) not null,
+    continent_name varchar(255) null,
+    constraint pk_continent primary key (continent_code)
+);
+
+insert into continent (continent_code, continent_name)
+values ('eu', 'Europe'),
+       ('af', 'Africa'),
+       ('an', 'Antarctica'),
+       ('as', 'Asia'),
+       ('na', 'North America'),
+       ('oc', 'Oceania'),
+       ('sa', 'South America');
+
 create table country
 (
     country_code varchar(255) not null,
