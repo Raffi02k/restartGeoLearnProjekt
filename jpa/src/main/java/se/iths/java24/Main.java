@@ -3,12 +3,88 @@ package se.iths.java24;
 import jakarta.persistence.EntityManager;
 import se.iths.java24.entity.Country;
 
+import java.util.Scanner;
+
 import static se.iths.java24.JPAUtil.getEntityManager;
 import static se.iths.java24.JPAUtil.inTransaction;
 
 public class Main {
 
     public static void main(String[] args) {
+        boolean quite = false;
+        Scanner scanner = new Scanner(System.in); // Glöm inte att skapa en scanner-instans
+
+        printAction();
+
+        while (!quite) {
+            System.out.print("Ange ditt val (1-5): ");
+
+            // Kontrollera om inmatningen är en siffra
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        countriesEurope();
+                        break;
+                    case 2:
+                        population();
+                        break;
+                    case 3:
+                        statistik();
+                        break;
+                    case 4:
+                        Quiz();
+                        break;
+                    case 5:
+                        quite = true;
+                        System.out.println("Avslutar programmet. Tack!");
+                        break;
+                    default:
+                        System.out.println("Ogiltigt val, försök igen. Välj ett nummer mellan 1 och 5.");
+                        printAction();
+                }
+            } else {
+                System.out.println("Ogiltig inmatning! Ange ett nummer mellan 1 och 5.");
+                scanner.next(); // Rensar felaktig inmatning
+            }
+        }
+
+        scanner.close(); // Glöm inte att stänga scannern
+    }
+
+    public static void countriesEurope() {
+        System.out.println("Visar länder i Europa...");
+        // Lägg till relevant logik här
+    }
+
+    public static void population() {
+        System.out.println("Visar befolkningsdata...");
+        // Lägg till relevant logik här
+    }
+
+    public static void statistik() {
+        System.out.println("Visar statistik...");
+        // Lägg till relevant logik här
+    }
+
+    public static void Quiz() {
+        System.out.println("Startar quiz...");
+        // Lägg till relevant logik här
+    }
+    public static void printAction() {
+        System.out.println();
+        System.out.println("""
+                
+                Welcome to Geo Learn Projekt!
+                Välj:
+                1.  - Countries in Europe.
+                2.  - Popuplation.
+                3.  - Statistik.
+                4.  - Quize!
+                5.  - Quit.
+                """);
+
+
         EntityManager em = getEntityManager();
         Cities cities = new Cities();
         //Ask user for information
