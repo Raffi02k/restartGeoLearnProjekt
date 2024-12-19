@@ -3,9 +3,9 @@
 ## Beskrivning
 Geo Learn Projekt är en interaktiv applikation för att lära sig geografi. Med hjälp av **JPA** och **MySQL** erbjuder projektet funktionalitet för att hantera kontinenter, länder, städer och andra geografiska data. Dessutom inkluderar projektet en **quiz-funktion** där användaren kan testa sina geografikunskaper.
 
-## Systemarkitektur
+# Systemarkitektur
 
-# Projektet är strukturerat enligt följande:
+## Projektet är strukturerat enligt följande:
 
 Paketstruktur
 
