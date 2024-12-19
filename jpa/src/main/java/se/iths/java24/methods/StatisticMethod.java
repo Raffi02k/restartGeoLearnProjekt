@@ -20,7 +20,7 @@ public class StatisticMethod {
         System.out.println("""
             Statistik Menu:
             1. Show all cities.
-            2. Population over 300000
+            2. Show top 3 cities by population
             3. Population over 300000
         """);
 
@@ -37,7 +37,7 @@ public class StatisticMethod {
                     break;
 
                 case 2:
-                    showPopulation();
+                    showTopThreeCitiesByPopulation();
                     break;
 
                 case 3:
@@ -47,12 +47,29 @@ public class StatisticMethod {
                 default:
                     System.out.println("Invalid choice. Returning to the main menu.");
 
-
             }
         } else {
             System.out.println("Invalid input. Returning to the main menu.");
         }
     }
+
+    private static void printTableCityPopulation(List<City> cities) {
+        if (cities == null || cities.isEmpty()) {
+            System.out.println("No cities to display.");
+            return;
+        }
+
+        // Print the table header
+        System.out.printf("%-5s | %-20s | %-10s%n", "ID", "City Name", "Population");
+        System.out.println("------------------------------------------------");
+
+        // Print each city in a formatted row
+        for (City city : cities) {
+            System.out.printf("%-5d | %-20s | %-10d%n", city.getId(), city.getCityName(), city.getPopulation());
+        }
+    }
+
+
 
     // Create a method to fetch all cities
     public static void showAllCities() {
@@ -65,14 +82,7 @@ public class StatisticMethod {
 
             // print the header
             System.out.println("\nList of all cities:\n");
-            System.out.printf("%-5s | %-20s | %-10s%n", "ID", "City Name", "Population");
-            System.out.println("------------------------------------------------");
-
-            // print each city in a formatted row
-            for (City city : cities) {
-                System.out.printf("%-5d | %-20s | %-10s%n", city.getId(), city.getCityName(), city.getPopulation());
-            }
-
+            printTableCityPopulation(cities);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,19 +95,19 @@ public class StatisticMethod {
 
 
     // Create a method to fetch all cities
-    public static void showPopulation() {
+    public static void showTopThreeCitiesByPopulation() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-hibernate-mysql"); // Replace with your persistence unit name
         EntityManager em = emf.createEntityManager();
 
         try {
-            // Query to fetch all cities
-            List<City> cities = em.createQuery("SELECT c FROM City c WHERE population > 399999", City.class).getResultList();
+            // Query to fetch three biggest cities
+            List<City> cities = em.createQuery("SELECT c FROM City c ORDER BY c.population DESC", City.class).setMaxResults(3).getResultList();
 
-            // Display the cities
-            System.out.println("List of all cities:");
-            for (City city : cities) {
-                System.out.println(city);
-            }
+
+            // print the header
+            System.out.println("\nList of the three biggest cities:\n");
+            printTableCityPopulation(cities);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,21 +129,8 @@ public class StatisticMethod {
                     .setParameter("population", populationThreshold)
                     .getResultList();
 
-            // Display the cities
-            if (cities.isEmpty()) {
-                System.out.println("No cities found with population over " + populationThreshold + ".");
-            } else {
-                // print the header
-                System.out.println("\nCities with population over " + populationThreshold + ":\n");
-                System.out.printf("%-5s | %-20s | %-10s%n", "ID", "City Name", "Population");
-                System.out.println("------------------------------------------------");
-
-                // print each city in a formatted row
-                for (City city : cities) {
-                    System.out.printf("%-5d | %-20s | %-10s%n", city.getId(), city.getCityName(), city.getPopulation());
-                }
-            }
-
+            System.out.println("\nCities with population over " + populationThreshold + ":\n");
+            printTableCityPopulation(cities);
 
 
         } catch (Exception e) {
