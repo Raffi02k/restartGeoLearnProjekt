@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import se.iths.java24.entity.City;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,12 +17,12 @@ public class StatisticMethod {
 
     public static void statistic() {
         System.out.println("""
-            Statistic Menu:
-            0. Back to Main Menu
-            1. Show all cities
-            2. Show top 3 cities by population
-            3. Population over 300000
-        """);
+                    Statistic Menu:
+                    0. Back to Main Menu
+                    1. Show all cities
+                    2. Show top 3 cities by population
+                    3. Population over 300000
+                """);
 
 
         System.out.print("Choose an option: ");
@@ -132,6 +133,4 @@ public class StatisticMethod {
             emf.close();
         }
     }
-
-
 }
