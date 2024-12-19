@@ -3,10 +3,7 @@ package se.iths.java24.methods;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-
 import se.iths.java24.entity.City;
-
-import java.sql.*;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,11 +12,10 @@ public class StatisticMethod {
 
     private static Scanner scanner = new Scanner(System.in);
 
-
-    public static void statistik() {
+    public static void statistic() {
         System.out.println("""
-            Statistik Menu:
-            1. Show all cities.
+            Statistic Menu:
+            1. Show all cities
             2. Show top 3 cities by population
             3. Population over 300000
         """);
@@ -53,23 +49,6 @@ public class StatisticMethod {
         }
     }
 
-    private static void printTableCityPopulation(List<City> cities) {
-        if (cities == null || cities.isEmpty()) {
-            System.out.println("No cities to display.");
-            return;
-        }
-
-        // Print the table header
-        System.out.printf("%-5s | %-20s | %-10s%n", "ID", "City Name", "Population");
-        System.out.println("------------------------------------------------");
-
-        // Print each city in a formatted row
-        for (City city : cities) {
-            System.out.printf("%-5d | %-20s | %-10d%n", city.getId(), city.getCityName(), city.getPopulation());
-        }
-    }
-
-
 
     // Create a method to fetch all cities
     public static void showAllCities() {
@@ -82,7 +61,9 @@ public class StatisticMethod {
 
             // print the header
             System.out.println("\nList of all cities:\n");
-            printTableCityPopulation(cities);
+
+            TableTemplates.printTableCityPopulation(cities);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +75,7 @@ public class StatisticMethod {
     }
 
 
-    // Create a method to fetch all cities
+    // Show 3 biggest cities
     public static void showTopThreeCitiesByPopulation() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-hibernate-mysql"); // Replace with your persistence unit name
         EntityManager em = emf.createEntityManager();
@@ -106,7 +87,7 @@ public class StatisticMethod {
 
             // print the header
             System.out.println("\nList of the three biggest cities:\n");
-            printTableCityPopulation(cities);
+            TableTemplates.printTableCityPopulation(cities);
 
 
         } catch (Exception e) {
@@ -119,6 +100,7 @@ public class StatisticMethod {
     }
 
 
+    // Show population over xxx    <-- need to be updated so it will be possible to see the
     public static void showCitiesWithPopulationOver(int populationThreshold) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpa-hibernate-mysql");
         EntityManager em = emf.createEntityManager();
@@ -130,7 +112,7 @@ public class StatisticMethod {
                     .getResultList();
 
             System.out.println("\nCities with population over " + populationThreshold + ":\n");
-            printTableCityPopulation(cities);
+            TableTemplates.printTableCityPopulation(cities);
 
 
         } catch (Exception e) {
@@ -141,8 +123,6 @@ public class StatisticMethod {
             emf.close();
         }
     }
-
-
 
 
 }
