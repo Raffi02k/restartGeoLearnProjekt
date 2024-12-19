@@ -12,16 +12,15 @@ public class Main {
 
     public static void main(String[] args) {
         boolean quit = false;
-        Scanner scanner = new Scanner(System.in); // Glöm inte att skapa en scanner-instans
+        Scanner scanner = new Scanner(System.in);
 
         printAction();
 
         while (!quit) {
             System.out.print("Ange ditt val (1-5): ");
-            // Kontrollera om inmatningen är en siffra
             if (scanner.hasNextInt()) {
                 int choice = scanner.nextInt();
-                scanner.nextLine(); // Konsumera newline-karaktären
+                scanner.nextLine();
                 switch (choice) {
                     case 1:
                         continentMenu();
@@ -50,9 +49,8 @@ public class Main {
             }
         }
 
-        scanner.close(); // Glöm inte att stänga scannern
+        scanner.close();
     }
-
 
     public static void printAction() {
         System.out.println("""

@@ -33,7 +33,7 @@ public class QuizeMethod {
                     }
                 } catch (Exception e) {
                     System.out.println("\nPlease enter a valid number (1, 2, 3, or 0)!\n");
-                    scanner.next(); // Rensa felaktig inmatning
+                    scanner.next();
                 }
             }
 

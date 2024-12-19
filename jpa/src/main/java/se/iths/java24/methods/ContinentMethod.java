@@ -25,7 +25,7 @@ public class ContinentMethod {
 
         if (scanner.hasNextInt()) {
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Konsumera newline-karaktären
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:

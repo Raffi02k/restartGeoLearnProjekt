@@ -7,6 +7,8 @@ import se.iths.java24.entity.City;
 import java.util.List;
 import java.util.Scanner;
 
+import static se.iths.java24.Main.printAction;
+
 
 public class StatisticMethod {
 
@@ -15,6 +17,7 @@ public class StatisticMethod {
     public static void statistic() {
         System.out.println("""
             Statistic Menu:
+            0. Back to Main Menu
             1. Show all cities
             2. Show top 3 cities by population
             3. Population over 300000
@@ -28,6 +31,10 @@ public class StatisticMethod {
             scanner.nextLine();
 
             switch (choice) {
+                case 0:
+                    printAction();
+                    return;
+
                 case 1:
                     showAllCities();
                     break;
@@ -47,6 +54,8 @@ public class StatisticMethod {
         } else {
             System.out.println("Invalid input. Returning to the main menu.");
         }
+        System.out.println();
+        statistic();
     }
 
 
