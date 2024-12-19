@@ -2,12 +2,10 @@ package se.iths.java24.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import se.iths.java24.JPAUtil;
 import se.iths.java24.entity.Country;
 import se.iths.java24.entity.Language;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 import static se.iths.java24.JPAUtil.getEntityManager;
