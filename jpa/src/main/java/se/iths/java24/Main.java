@@ -8,12 +8,12 @@ import static se.iths.java24.repository.ContinentRepository.*;
 public class Main {
 
     public static void main(String[] args) {
-        boolean quite = false;
+        boolean quit = false;
         Scanner scanner = new Scanner(System.in); // Glöm inte att skapa en scanner-instans
 
         printAction();
 
-        while (!quite) {
+        while (!quit) {
             System.out.print("Ange ditt val (1-5): ");
 
             // Kontrollera om inmatningen är en siffra
@@ -28,21 +28,21 @@ public class Main {
                         population();
                         break;
                     case 3:
-                        statistik();
+                        statistics();
                         break;
                     case 4:
-                        Quiz();
+                        quiz();
                         break;
                     case 5:
-                        quite = true;
-                        System.out.println("Avslutar programmet. Tack!");
+                        quit = true;
+                        System.out.println("Exiting Geo Learn Projekt... Goodbye!");
                         break;
                     default:
-                        System.out.println("Ogiltigt val, försök igen. Välj ett nummer mellan 1 och 6.");
+                        System.out.println("Invalid choice, please try again.");
                         printAction();
                 }
             } else {
-                System.out.println("Ogiltig inmatning! Ange ett nummer mellan 1 och 6.");
+                System.out.println("Invalid choice, please try again.");
                 scanner.next(); // Rensar felaktig inmatning
             }
         }
@@ -50,9 +50,33 @@ public class Main {
         scanner.close(); // Glöm inte att stänga scannern
     }
 
+    public static void printAction() {
+        System.out.println("""
+                
+                Welcome to Geo Learn Projekt!
+                What would you like to do?
+                1.  - Continents
+                2.  - Population
+                3.  - Statistics
+                4.  - Quiz!
+                5.  - Quit.
+                """);
+    }
+
     public static void continentMenu() {
         Scanner scanner = new Scanner(System.in);
         ContinentRepository repository = new ContinentRepository();
+
+        System.out.println("""
+                
+                Continents Menu:
+                1.  - Show all continents
+                2   - Search for a continent
+                3.  - Add a continent
+                4.  - Update a continent
+                5.  - Delete a continent
+                6.  - Back to Main Menu
+                """);
 
         System.out.println("\nContinent Menu:");
         System.out.println("1. Show Continents");
@@ -72,15 +96,18 @@ public class Main {
                     continentMenu();
                     break;
                 case 2:
-                    CreateContinent();
+                    searchContinent();
                     break;
                 case 3:
-                    UpdateContinent();
+                    CreateContinent();
                     break;
                 case 4:
-                    DeleteContinent();
+                    UpdateContinent();
                     break;
                 case 5:
+                    DeleteContinent();
+                    break;
+                case 6:
                     System.out.println("Returning to Main Menu...");
                     printAction();
                     return;
@@ -103,29 +130,17 @@ public class Main {
         // Lägg till relevant logik här
     }
 
-    public static void statistik() {
+    public static void statistics() {
         System.out.println("Visar statistik...");
         // Lägg till relevant logik här
     }
 
-    public static void Quiz() {
+    public static void quiz() {
         System.out.println("Startar quiz...");
         // Lägg till relevant logik här
     }
-
-    public static void printAction() {
-        System.out.println("""
-                
-                Welcome to Geo Learn Projekt!
-                Välj:
-                1.  - Continent.
-                2.  - Population.
-                3.  - Statistik.
-                4.  - Quiz!
-                5.  - Quit.
-                """);
-    }
 }
+
 
 //        //Ask user for information
 //        System.out.println("Add city to country");

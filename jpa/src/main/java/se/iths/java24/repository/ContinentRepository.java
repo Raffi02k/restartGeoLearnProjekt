@@ -46,6 +46,12 @@ public class ContinentRepository {
         System.out.println("Continent created successfully.");
     }
 
+    public static void searchContinent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter continent code:");
+        String code = scanner.nextLine();
+    }
+
     public static void UpdateContinent() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the continent code of the continent you want to update:");
