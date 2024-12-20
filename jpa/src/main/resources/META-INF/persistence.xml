@@ -7,8 +7,8 @@
         <class>se.iths.java24.entity.Country</class>
         <class>se.iths.java24.entity.City</class>
         <class>se.iths.java24.entity.Continent</class>
-
-
+        <class>se.iths.java24.entity.Language</class>
+        <class>se.iths.java24.entity.Currency</class>
 
         <properties>
             <!-- Database connection settings -->

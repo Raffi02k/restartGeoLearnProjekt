@@ -21,6 +21,4 @@ public class TableTemplates {
             System.out.printf("%-5d | %-20s | %-10d%n", city.getId(), city.getCityName(), city.getPopulation());
         }
     }
-
-
 }

@@ -23,6 +23,7 @@ public class StatisticMethod {
             3. Population over 300000
         """);
 
+
         System.out.print("Choose an option: ");
 
         if (scanner.hasNextInt()) {

@@ -2,11 +2,10 @@ package se.iths.java24;
 
 import java.util.Scanner;
 
-import static se.iths.java24.methods.CityMethod.population;
 import static se.iths.java24.methods.ContinentMethod.continentMenu;
 import static se.iths.java24.methods.QuizeMethod.Quiz;
 import static se.iths.java24.methods.StatisticMethod.statistic;
-
+import static se.iths.java24.repository.CRUDMethod.crudMenu;
 
 public class Main {
 
@@ -26,7 +25,7 @@ public class Main {
                         continentMenu();
                         break;
                     case 2:
-                        population();
+                        crudMenu();
                         break;
                     case 3:
                         statistic();
@@ -58,7 +57,7 @@ public class Main {
                 Welcome to Geo Learn Projekt!
                 Välj:
                 1.  - Continent.
-                2.  - Population.
+                2.  - CRUD.
                 3.  - Statistic.
                 4.  - Quiz!
                 5.  - Quit.
