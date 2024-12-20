@@ -61,4 +61,32 @@ public class Country {
     public void postLoad() {
         threeLetterName = countryName.substring(0, 3);
     }
+
+    @Entity
+    @Table(name = "continent", schema = "demo")
+    public static class Continent {
+        @Id
+        @Column(name = "continent_code", nullable = false)
+        private String continentCode;
+
+        @Column(name = "continent_name")
+        private String continentName;
+
+        public String getContinentCode() {
+            return continentCode;
+        }
+
+        public void setContinentCode(String continentCode) {
+            this.continentCode = continentCode;
+        }
+
+        public String getContinentName() {
+            return continentName;
+        }
+
+        public void setContinentName(String continentName) {
+            this.continentName = continentName;
+        }
+
+    }
 }

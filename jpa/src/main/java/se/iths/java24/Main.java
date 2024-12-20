@@ -8,12 +8,12 @@ import static se.iths.java24.repository.ContinentRepository.*;
 public class Main {
 
     public static void main(String[] args) {
-        boolean quite = false;
+        boolean quit = false;
         Scanner scanner = new Scanner(System.in); // Glöm inte att skapa en scanner-instans
 
         printAction();
 
-        while (!quite) {
+        while (!quit) {
             System.out.print("Ange ditt val (1-5): ");
 
             // Kontrollera om inmatningen är en siffra
@@ -34,7 +34,7 @@ public class Main {
                         Quiz();
                         break;
                     case 5:
-                        quite = true;
+                        quit = true;
                         System.out.println("Avslutar programmet. Tack!");
                         break;
                     default:
@@ -110,7 +110,36 @@ public class Main {
 
     public static void Quiz() {
         System.out.println("Startar quiz...");
-        // Lägg till relevant logik här
+        Scanner scanner = new Scanner(System.in);
+
+        String[] questions = {
+                "What should be the Capital of Sweden?\n1. Stockholm\n2. Gothenburg\n3. Malmö",
+                "What country in Europe is the biggest?\n1. Russia\n2. Ukraine\n3. France",
+                "What continent is Australia part of?\n1. Asia\n2. Africa\n3. Oceania"
+        };
+
+        int[] correctAnswers = {2, 1, 3};
+        int score = 0;
+
+        System.out.println("Welcome to our Quiz! Answer with 1, 2 or 3.");
+
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println(questions[i]);
+            System.out.print("Your answer: ");
+            int answer = scanner.nextInt();
+
+            if (answer == correctAnswers[i]) {
+                System.out.println("Rätt!\n");
+                score++;
+            }
+            else {
+                System.out.println("Wrong. The correct answer is " + correctAnswers[i] + ".\n");
+            }
+        }
+
+        System.out.println("Du fick " + score + " av " + questions.length + " rätt!");
+
+        scanner.close();
     }
 
     public static void printAction() {

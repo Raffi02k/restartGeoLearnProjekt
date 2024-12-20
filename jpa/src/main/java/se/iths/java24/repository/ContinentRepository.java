@@ -2,7 +2,6 @@ package se.iths.java24.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import se.iths.java24.JPAUtil;
 import se.iths.java24.entity.Continent;
 
 import java.util.List;
