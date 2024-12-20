@@ -53,15 +53,12 @@ values
     ('SEK', 'Swedish Krona', 'se');
 
 
-
-
 create table country
 (
     country_code varchar(255) not null,
     country_name varchar(255) null,
     constraint pk_country primary key (country_code)
 );
-
 
 insert into country (country_code, country_name)
 values ('dk', 'Denmark'),
@@ -73,12 +70,14 @@ values ('dk', 'Denmark'),
 create table city
 (
     id           bigint auto_increment not null,
-    city_name    varchar(255)          not null,
+    city_name    varchar(255)   unique     not null,
     population   int                   not null,
     country_code varchar(255)          not null,
     constraint pk_city primary key (id),
     constraint fk_city_country foreign key (country_code) references country (country_code)
 );
+
+drop table city;
 
 insert into city (city_name, population, country_code)
 values
