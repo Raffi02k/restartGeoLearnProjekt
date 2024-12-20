@@ -2,6 +2,7 @@ package se.iths.java24.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import se.iths.java24.JPAUtil;
 import se.iths.java24.entity.Country;
 import se.iths.java24.entity.Language;
 
@@ -12,6 +13,13 @@ import static se.iths.java24.JPAUtil.getEntityManager;
 import static se.iths.java24.JPAUtil.inTransaction;
 
 public class LanguageRepository {
+
+    public static Language findLanguageByCountryCode(String countryCode) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Language> query = em.createQuery("SELECT l FROM Language l WHERE l.country.countryCode = :code", Language.class);
+        query.setParameter("code", countryCode);
+        return query.getResultList().stream().findFirst().orElse(null);
+    }
 
     public static void createLanguage() {
         Scanner scanner = new Scanner(System.in);

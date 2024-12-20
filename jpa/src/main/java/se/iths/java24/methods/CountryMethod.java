@@ -1,6 +1,9 @@
 package se.iths.java24.methods;
 
 import se.iths.java24.repository.CountryRepository;
+import se.iths.java24.entity.Country;
+import se.iths.java24.entity.Continent;
+import java.util.List;
 
 import java.util.Scanner;
 
@@ -44,5 +47,9 @@ public class CountryMethod {
             System.out.println("Invalid input, please enter a number.");
             scanner.next();
         }
+    }
+
+    public static List<Country> getAllCountriesByContinent(Continent continent) {
+        return CountryRepository.findCountryByContinent(continent);
     }
 }

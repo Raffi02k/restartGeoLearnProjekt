@@ -1,6 +1,9 @@
 package se.iths.java24.methods;
 
 import se.iths.java24.repository.ContinentRepository;
+import se.iths.java24.entity.Continent;
+import java.util.List;
+
 
 import java.util.Scanner;
 
@@ -57,5 +60,9 @@ public class ContinentMethod {
     public static void countriesEurope() {
         System.out.println("Visar länder i Europa...");
         // Lägg till relevant logik här
+    }
+
+    public static List<Continent> getAllContinents() {
+        return ContinentRepository.findAllContinents();
     }
 }

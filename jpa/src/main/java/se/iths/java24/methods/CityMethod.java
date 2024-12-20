@@ -1,6 +1,10 @@
 package se.iths.java24.methods;
 
+import se.iths.java24.entity.City;
+import se.iths.java24.entity.Country;
 import se.iths.java24.repository.CityRepository;
+
+import java.util.List;
 
 import java.util.Scanner;
 
@@ -44,5 +48,9 @@ public class CityMethod {
             System.out.println("Invalid input, please enter a number.");
             scanner.next();
         }
+    }
+
+    public static List<City> getCitiesByCountry(Country country) {
+        return CityRepository.findCitiesByCountry(country);
     }
 }

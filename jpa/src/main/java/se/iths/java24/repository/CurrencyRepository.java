@@ -2,6 +2,7 @@ package se.iths.java24.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import se.iths.java24.JPAUtil;
 import se.iths.java24.entity.Country;
 import se.iths.java24.entity.Currency;
 
@@ -12,6 +13,13 @@ import static se.iths.java24.JPAUtil.getEntityManager;
 import static se.iths.java24.JPAUtil.inTransaction;
 
 public class CurrencyRepository {
+
+    public static Currency findCurrencyByCountryCode(String countryCode) {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<Currency> query = em.createQuery("SELECT c FROM Currency c WHERE c.country.countryCode = :code", Currency.class);
+        query.setParameter("code", countryCode);
+        return query.getResultList().stream().findFirst().orElse(null);
+    }
 
     public static void createCurrency() {
         Scanner scanner = new Scanner(System.in);

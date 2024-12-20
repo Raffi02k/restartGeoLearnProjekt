@@ -27,6 +27,20 @@ public class ContinentRepository {
         }
     }
 
+    public static List<Continent> findAllContinents() {
+        EntityManager em = getEntityManager();
+        List<Continent> continents = null;
+        try {
+            TypedQuery<Continent> query = em.createQuery("SELECT c FROM Continent c", Continent.class);
+            continents = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return continents;
+    }
+
     public static void CreateContinent() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter continent name:");

@@ -1,7 +1,6 @@
 package se.iths.java24.entity;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +22,16 @@ public class Country {
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     private List<City> cities = new ArrayList<>();
 
+    @ManyToOne
+    private Continent continent;
+
     public List<City> getCities() {
         return cities;
     }
+
     public String getThreeLetterName() {
         return threeLetterName;
     }
-
 
     public String getCountryCode() {
         return countryCode;
@@ -47,46 +49,27 @@ public class Country {
         this.countryName = countryName;
     }
 
+    public Continent getContinent() {
+        return continent;
+    }
+
+    public void setContinent(Continent continent) {
+        this.continent = continent;
+    }
+
     @Override
     public String toString() {
         return "Country{" +
-               "countryCode='" + countryCode + '\'' +
-               ", countryName='" + countryName + '\'' +
-               ", threeLetterName='" + threeLetterName + '\'' +
-               ", cities=" + cities +
-               '}';
+                "countryCode='" + countryCode + '\'' +
+                ", countryName='" + countryName + '\'' +
+                ", threeLetterName='" + threeLetterName + '\'' +
+                ", cities=" + cities +
+                ", continent=" + continent +
+                '}';
     }
 
     @PostLoad
     public void postLoad() {
         threeLetterName = countryName.substring(0, 3);
-    }
-
-    @Entity
-    @Table(name = "continent", schema = "demo")
-    public static class Continent {
-        @Id
-        @Column(name = "continent_code", nullable = false)
-        private String continentCode;
-
-        @Column(name = "continent_name")
-        private String continentName;
-
-        public String getContinentCode() {
-            return continentCode;
-        }
-
-        public void setContinentCode(String continentCode) {
-            this.continentCode = continentCode;
-        }
-
-        public String getContinentName() {
-            return continentName;
-        }
-
-        public void setContinentName(String continentName) {
-            this.continentName = continentName;
-        }
-
     }
 }

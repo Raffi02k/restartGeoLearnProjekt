@@ -116,4 +116,32 @@ public class CityRepository {
             em.close();
         }
     }
+
+    public static List<City> findCitiesByCountryCode(String countryCode) {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<City> cities = null;
+        try {
+            String queryStr = "SELECT c FROM City c WHERE c.country.countryCode = :countryCode";
+            TypedQuery<City> query = em.createQuery(queryStr, City.class);
+            query.setParameter("countryCode", countryCode);
+            cities = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return cities;
+    }
+
+    public static List<City> findCitiesByCountry(Country country) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            // Skapa en fråga för att hämta alla städer som tillhör ett specifikt land
+            TypedQuery<City> query = em.createQuery("SELECT c FROM City c WHERE c.country = :country", City.class);
+            query.setParameter("country", country);
+            return query.getResultList();  // Returnera listan med städer
+        } catch (RuntimeException e) {
+            return null;  // Om ingen stad hittas, returnera null
+        }
+    }
 }
