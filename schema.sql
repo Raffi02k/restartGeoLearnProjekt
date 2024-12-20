@@ -65,7 +65,28 @@ values ('dk', 'Denmark'),
        ('fi', 'Finland'),
        ('is', 'Iceland'),
        ('no', 'Norway'),
-       ('se', 'Sweden');
+       ('se', 'Sweden'),
+       ('at', 'Austria'),
+       ('be', 'Belgium'),
+       ('bg', 'Bulgaria'),
+       ('hr', 'Croatia'),
+       ('cy', 'Cyprus'),
+       ('cz', 'Czech Republic'),
+       ('ee', 'Estonia'),
+       ('fr', 'France'),
+       ('de', 'Germany'),
+       ('gr', 'Greece'),
+       ('hu', 'Hungary'),
+       ('ie', 'Ireland'),
+       ('it', 'Italy'),
+       ('lv', 'Latvia'),
+       ('lt', 'Lithuania'),
+       ('lu', 'Luxembourg'),
+       ('mt', 'Malta'),
+       ('nl', 'Netherlands');
+
+
+;
 
 create table city
 (
