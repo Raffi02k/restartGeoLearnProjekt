@@ -1,5 +1,6 @@
 use demo;
 
+drop table continent;
 create table continent
 (
     continent_code varchar(255) not null,
@@ -35,6 +36,8 @@ values
     ('Sami', 'se'),
     ('Greenlandic', 'dk');
 
+
+drop table currency;
 create table currency
 (
     currency_code varchar(255) not null,
@@ -51,8 +54,35 @@ values
     ('ISK', 'Icelandic Krona', 'is'),
     ('NOK', 'Norwegian Krone', 'no'),
     ('SEK', 'Swedish Krona', 'se');
+#     ('EUR', 'Euro', 'sp'),
+#     ('EUR', 'Euro', 'sl'),
+#     ('EUR', 'Euro', 'sk'),
+#     ('EUR', 'Romanian leu', 'ro'),
+#     ('EUR', 'Euro', 'pt'),
+#     ('EUR', 'Polish zloty', 'pl'),
+#     ('EUR', 'Euro', 'nl'),
+#     ('EUR', 'Euro', 'mt'),
+#     ('EUR', 'Euro', 'lu'),
+#     ('EUR', 'Euro', 'lt'),
+#     ('EUR', 'Euro', 'lv'),
+#     ('EUR', 'Euro', 'it'),
+#     ('EUR', 'Euro', 'ie'),
+#     ('EUR', 'Hungarian forint', 'hu'),
+#     ('EUR', 'Euro', 'gr'),
+#     ('EUR', 'Euro', 'de'),
+#     ('EUR', 'Euro', 'fr'),
+#     ('EUR', 'Euro', 'ee'),
+#     ('EUR', 'Euro', 'cz'),
+#     ('EUR', 'Euro', 'cy'),
+#     ('EUR', 'Croatian kuna', 'hr'),
+#     ('EUR', 'Bulgarian lev', 'bg'),
+#     ('EUR', 'Euro', 'be'),
+#     ('EUR', 'Euro', 'at'),
+#     ('EUR', 'Albanian lek', 'al'),
+#     ('EUR', 'Euro', 'ad'),
+#     ('EUR', 'Ukrainian hryvnia', 'ua');
 
-
+drop table country;
 create table country
 (
     country_code varchar(255) not null,
@@ -83,11 +113,16 @@ values ('dk', 'Denmark'),
        ('lt', 'Lithuania'),
        ('lu', 'Luxembourg'),
        ('mt', 'Malta'),
-       ('nl', 'Netherlands');
+       ('nl', 'Netherlands'),
+       ('pl', 'Poland'),
+       ('pt', 'Portugal'),
+       ('ro', 'Romania'),
+       ('sk', 'Slovakia'),
+       ('sl', 'Slovenia'),
+       ('sl', 'Spain');
 
 
-;
-
+drop table city;
 create table city
 (
     id           bigint auto_increment not null,
@@ -97,8 +132,6 @@ create table city
     constraint pk_city primary key (id),
     constraint fk_city_country foreign key (country_code) references country (country_code)
 );
-
-drop table city;
 
 insert into city (city_name, population, country_code)
 values
