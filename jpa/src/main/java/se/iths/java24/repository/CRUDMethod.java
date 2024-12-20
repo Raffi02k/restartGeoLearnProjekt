@@ -4,6 +4,8 @@ import se.iths.java24.methods.*;
 
 import java.util.Scanner;
 
+import static se.iths.java24.Main.printAction;
+
 public class CRUDMethod {
 
     public static void crudMenu() {
@@ -24,7 +26,8 @@ public class CRUDMethod {
                 scanner.nextLine(); // Konsumera newline
                 switch (choice) {
                     case 0:
-                        return; // Tillbaka till huvudmenyn
+                        printAction();
+                        return;
                     case 1:
                         ContinentMethod.continentMenu();
                         break;
