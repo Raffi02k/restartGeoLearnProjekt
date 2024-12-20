@@ -16,48 +16,45 @@ public class StatisticMethod {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void statistic() {
-        System.out.println("""
-                    Statistic Menu:
-                    0. Back to Main Menu
-                    1. Show all cities
-                    2. Show top 3 cities by population
-                    3. Population over 300000
-                """);
+        Scanner scanner = new Scanner(System.in);
 
+        while (true) {
+            System.out.println("""
+                Statistic Menu:
+                0. Back to Main Menu
+                1. Show all cities
+                2. Show top 3 cities by population
+                3. Population over 300000
+            """);
+            System.out.print("Choose an option: ");
 
-        System.out.print("Choose an option: ");
-
-        if (scanner.hasNextInt()) {
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (choice) {
-                case 0:
-                    printAction();
-                    return;
-
-                case 1:
-                    showAllCities();
-                    break;
-
-                case 2:
-                    showTopThreeCitiesByPopulation();
-                    break;
-
-                case 3:
-                    showCitiesWithPopulationOver(300000);
-                    break;
-
-                default:
-                    System.out.println("Invalid choice. Returning to the main menu.");
-
+            if (scanner.hasNextInt()) {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+                switch (choice) {
+                    case 0:
+                        printAction();
+                        return; // Avslutar menyn och går tillbaka
+                    case 1:
+                        showAllCities();
+                        break;
+                    case 2:
+                        showTopThreeCitiesByPopulation();
+                        break;
+                    case 3:
+                        showCitiesWithPopulationOver(300000);
+                        break;
+                    default:
+                        System.out.println("Invalid choice. Try again.");
+                }
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.next(); // Rensar felaktig inmatning
             }
-        } else {
-            System.out.println("Invalid input. Returning to the main menu.");
+            System.out.println(); // För separation mellan omgångar
         }
-        System.out.println();
-        statistic();
     }
+
 
 
     // Create a method to fetch all cities
