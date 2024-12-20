@@ -1,19 +1,19 @@
 package se.iths.java24.methods;
 
-import se.iths.java24.repository.CityRepository;
+import se.iths.java24.repository.LanguageRepository;
 
 import java.util.Scanner;
 
-public class CityMethod {
+public class LanguageMethod {
 
-    public static void cityMenu() {
+    public static void languageMenu() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\nCity Menu:");
-        System.out.println("1. Show Cities");
-        System.out.println("2. Create a City");
-        System.out.println("3. Update a City");
-        System.out.println("4. Delete a City");
+        System.out.println("\nLanguage Menu:");
+        System.out.println("1. Show Languages");
+        System.out.println("2. Create a Language");
+        System.out.println("3. Update a Language");
+        System.out.println("4. Delete a Language");
         System.out.println("5. Back to CRUD Menu");
         System.out.print("Choose an option: ");
 
@@ -23,17 +23,17 @@ public class CityMethod {
 
             switch (choice) {
                 case 1:
-                    CityRepository.showCities();
-                    cityMenu();
+                    LanguageRepository.showLanguages();
+                    languageMenu();
                     break;
                 case 2:
-                    CityRepository.createCity();
+                    LanguageRepository.createLanguage();
                     break;
                 case 3:
-                    CityRepository.updateCity();
+                    LanguageRepository.updateLanguage();
                     break;
                 case 4:
-                    CityRepository.deleteCity();
+                    LanguageRepository.deleteLanguage();
                     break;
                 case 5:
                     return; // Tillbaka till CRUD-menyn

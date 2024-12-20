@@ -1,19 +1,19 @@
 package se.iths.java24.methods;
 
-import se.iths.java24.repository.CityRepository;
+import se.iths.java24.repository.CurrencyRepository;
 
 import java.util.Scanner;
 
-public class CityMethod {
+public class CurrencyMethod {
 
-    public static void cityMenu() {
+    public static void currencyMenu() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\nCity Menu:");
-        System.out.println("1. Show Cities");
-        System.out.println("2. Create a City");
-        System.out.println("3. Update a City");
-        System.out.println("4. Delete a City");
+        System.out.println("\nCurrency Menu:");
+        System.out.println("1. Show Currencies");
+        System.out.println("2. Create a Currency");
+        System.out.println("3. Update a Currency");
+        System.out.println("4. Delete a Currency");
         System.out.println("5. Back to CRUD Menu");
         System.out.print("Choose an option: ");
 
@@ -23,17 +23,17 @@ public class CityMethod {
 
             switch (choice) {
                 case 1:
-                    CityRepository.showCities();
-                    cityMenu();
+                    CurrencyRepository.showCurrencies();
+                    currencyMenu();
                     break;
                 case 2:
-                    CityRepository.createCity();
+                    CurrencyRepository.createCurrency();
                     break;
                 case 3:
-                    CityRepository.updateCity();
+                    CurrencyRepository.updateCurrency();
                     break;
                 case 4:
-                    CityRepository.deleteCity();
+                    CurrencyRepository.deleteCurrency();
                     break;
                 case 5:
                     return; // Tillbaka till CRUD-menyn
